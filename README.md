@@ -3,6 +3,8 @@ Jasmine Arguments
 
 Jasmine Arguments is an extensible set of argument matchers for jasmine's spies.
 
+Downloadable files are in lib/. I suggest either jasmine.arguments.js or its minified version
+
 What does it do exactly?
 ------------------------
 
