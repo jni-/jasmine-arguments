@@ -116,7 +116,7 @@
           key1: "value1"
         }).toBeTruthy();
       });
-      return it('should return false if not all of the pairs are in the actual object', function() {
+      it('should return false if not all of the pairs are in the actual object', function() {
         return expectMatcher(matcher, {
           key1: "value1",
           key2: "value2"
@@ -124,6 +124,20 @@
           key2: "value2",
           some: "random"
         }).toBeFalsy();
+      });
+      it('should display an explicit message in case of an array', function() {
+        matcher = jasmine.Arg().hasItems(["wrong_item"]);
+        matcher.jasmineMatches(["item"]);
+        return expect(matcher.jasmineToString()).toContain("wrong_item");
+      });
+      return it('should display an explicit message in case of an object', function() {
+        matcher = jasmine.Arg().hasItems({
+          wrong_key: "value"
+        });
+        matcher.jasmineMatches({
+          key: "value"
+        });
+        return expect(matcher.jasmineToString()).toContain("wrong_key");
       });
     });
   });

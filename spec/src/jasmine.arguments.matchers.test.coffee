@@ -92,3 +92,17 @@ describe 'jasmine-arguments-matchers', ->
     it 'should return false if not all of the pairs are in the actual object', ->
       expectMatcher(matcher, {key1: "value1", key2: "value2"}, {key2: "value2", some: "random"}).toBeFalsy()
 
+    it 'should display an explicit message in case of an array', ->
+      matcher = jasmine.Arg().hasItems(["wrong_item"])
+
+      matcher.jasmineMatches(["item"])
+
+      expect(matcher.jasmineToString()).toContain("wrong_item")
+
+    it 'should display an explicit message in case of an object', ->
+      matcher = jasmine.Arg().hasItems({wrong_key: "value"})
+
+      matcher.jasmineMatches({key: "value"})
+
+      expect(matcher.jasmineToString()).toContain("wrong_key")
+
