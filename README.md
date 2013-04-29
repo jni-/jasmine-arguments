@@ -16,6 +16,12 @@ It allows you to do this :
 
 Well, obviously this is the academic non-sense example, but I'm sure you'll find this to come handy eventually.
 
+Documentation
+-------------
+
+This is a pretty simple project, you should read the section above for the syntax, and 
+[this file](https://github.com/jni-/jasmine-arguments/blob/master/spec/src/jasmine.arguments.matchers.test.coffee) for usage.
+
 I'm a tech dude, throw details at me
 ------------------------------------
 
