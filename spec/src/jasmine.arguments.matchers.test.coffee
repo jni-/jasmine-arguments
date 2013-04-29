@@ -55,3 +55,33 @@ describe 'jasmine-arguments-matchers', ->
 
     it 'should return false because abc is contained in abcde, but not def', ->
       expect(jasmine.Arg().contains('abc').contains('def').jasmineMatches('abcde')).toBeFalsy()
+
+  describe 'hasItems', ->
+    matcher = jasmine.undefined
+
+    beforeEach ->
+      matcher = jasmine.Arg().hasItems
+
+    it 'should return false if the array does not contain the value', ->
+      expectMatcher(matcher, ["test"], ["some", "more", "stuff"]).toBeFalsy()
+
+    it 'shoudl return false if the array does not contain the value at the correct position', ->
+      expectMatcher(matcher, ["test"], ["some", "more", "test"]).toBeFalsy()
+
+    it 'should return false if the actual array is empty', ->
+     expectMatcher(matcher, ["test"], []).toBeFalsy()
+
+    it 'should return true if the value is at the correct position', ->
+      expectMatcher(matcher, ["test"], ["test", "something"]).toBeTruthy()
+
+    it 'should return true if testing an object that simulates an array', ->
+      expectMatcher(matcher, {1: "something"}, ["test", "something"]).toBeTruthy()
+
+    it 'should return false if the object does not contain the key', ->
+      expectMatcher(matcher, {key: "value"}, {random: "value"}).toBeFalsy()
+
+    it 'should return false if the object contains the key, but the value differs', ->
+      expectMatcher(matcher, {key: "value"}, {key: "not the value"}).toBeFalsy()
+
+    it 'should return true if the value and the key are in the object', ->
+      expectMatcher(matcher, {key: "value"}, {random: "stuff", key: "value"}).toBeTruthy()
