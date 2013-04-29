@@ -85,3 +85,10 @@ describe 'jasmine-arguments-matchers', ->
 
     it 'should return true if the value and the key are in the object', ->
       expectMatcher(matcher, {key: "value"}, {random: "stuff", key: "value"}).toBeTruthy()
+
+    it 'should return true if multiple pairs are in the actual object', ->
+      expectMatcher(matcher, {key1: "value1", key2: "value2"}, {key2: "value2", some: "random", key1: "value1"}).toBeTruthy()
+
+    it 'should return false if not all of the pairs are in the actual object', ->
+      expectMatcher(matcher, {key1: "value1", key2: "value2"}, {key2: "value2", some: "random"}).toBeFalsy()
+
