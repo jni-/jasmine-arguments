@@ -125,6 +125,11 @@
           some: "random"
         }).toBeFalsy();
       });
+      it('should return false if actual is not an array nor an object', function() {
+        return expectMatcher(matcher, {
+          key: "value"
+        }, "random string").toBeFalsy();
+      });
       it('should display an explicit message in case of an array', function() {
         matcher = jasmine.Arg().hasItems(["wrong_item"]);
         matcher.jasmineMatches(["item"]);

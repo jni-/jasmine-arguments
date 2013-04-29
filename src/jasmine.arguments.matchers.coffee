@@ -14,6 +14,9 @@ JasmineArgumentsBuilder.prototype.contains = (expected) ->
 JasmineArgumentsBuilder.prototype.hasItems= (expectedItems) ->
   builder = JasmineArgumentsBuilder().getBuilder(this)
   builder.addMatcher new JasmineArgumentsMatcher((actual) ->
+
+    return false if actual is null or typeof actual isnt "object"
+
     for expectedKey, expectedValue of expectedItems
       return false unless expectedKey of actual and actual[expectedKey] is expectedValue
     true
